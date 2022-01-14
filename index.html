@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- ==============main css ==================-->
+    <link rel="stylesheet" href="./assets/css/chat.css">
+    <!-- ================googe font =============== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<!-- =====================jquery ==================== -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- ================================== CHATBOT =============================== -->
+    <div class="chat-container">
+        <header id="head" class="head">
+            <ion-icon name="chatbubble-ellipses-outline" class="icon" id="icon" "></ion-icon>
+            <div class="icon" id="name" >temka's Bot</div>
+        </header>
+            <div class="chat-box" id="chat-box">
+                <h5 id="chat-time" class="chat-time"></h5>
+                <span class="bot" id="botstart"></span>
+                <div id="bottom">
+                    <p></p>
+                </div>
+            </div>
+        <main>
+            <div class="input-block" id="bottom-input">
+                <input type="text" id="input">
+                <button class="send" id="sent"><ion-icon name="send-outline"></ion-icon></button>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ================== MAIN JS================== -->
+    <script>
+
+        // const head = document.getElementById('head');
+        // head.addEventListener('click',()=>{
+        //     chat_Container.classList.toggle('expander');
+            
+            
+        // })
+        // $('#icon').click(function(){
+        //     $('.chat-container').toggleClass('expander')
+        //     $('.chat-box').fadeToggle(null,function(){
+        //         $('#name').fadeToggle('slow');
+        //     });
+            
+        // })
+
+        function currentTime(){
+            let today = new Date();
+            let hour = today.getHours();
+            let minute = today.getMinutes();
+            if(hour<10){
+                hour = '0'+hour;
+            }
+            if(minute<10){
+                minute = '0'+minute;
+            }
+            return hour+':'+minute;
+        }
+
+        function start(){
+            let startMessage = "sain uu soko";
+            document.getElementById('botstart').innerHTML = '<span class="bot"><p>'+startMessage+'</p></span>';
+            let time = currentTime();
+            document.getElementById('chat-time').innerHTML= time;
+            document.getElementById('bottom-input').scrollIntoView(false);
+        }        setTimeout(start,1000);
+
+        
+
+        function getHardResponse(herglegch){
+            let botiin_hariu_vildel = getBotResponse(herglegch.toLowerCase());
+            let botHtml = '<span class="bot"><p>'+botiin_hariu_vildel+'</p></span>'
+            $('.chat-box').append(botHtml);
+            document.getElementById('bottom').scrollIntoView(true);
+            document.getElementById('bottom-input').scrollIntoView(false);
+        }
+        function getUserResponse(){
+            let herglegcheesAwsanUtga = document.getElementById('input').value;
+            if(herglegcheesAwsanUtga == ''){
+                return;
+            }
+            let userHtml = '<span class="user"><p>'+herglegcheesAwsanUtga+'</p></span>';
+            $('.chat-box').append(userHtml);
+            $('input').val("");
+            document.getElementById('bottom').scrollIntoView(true);
+
+
+            setTimeout(()=>{
+                getHardResponse(herglegcheesAwsanUtga);
+            },1000);
+        }
+        document.getElementById('sent').addEventListener('click',getUserResponse);
+        $('#input').keypress(function(e){
+            if(e.which ==13){
+                getUserResponse();
+            }
+        })
+
+        const header = document.querySelector('.head')
+        const chat_Container = document.querySelector('.chat-container');
+
+        header.addEventListener('mousedown',()=>{
+            header.addEventListener('mousemove',hudluh)
+        })
+        function hudluh({movementX,movementY}){
+            let getStyle = window.getComputedStyle(chat_Container);
+            let left = parseInt(getStyle.left);
+            let top = parseInt(getStyle.top);
+            chat_Container.style.left = `${left+movementX}px`;
+            chat_Container.style.top = `${top+movementY}px`;
+            header.classList.add('active');
+        }
+        
+
+        document.addEventListener('mouseup',()=>{
+            header.removeEventListener('mousemove',hudluh)
+            header.classList.remove('active')
+        })
+
+    </script>
+
+    <script src="./assets/js/bot.js"></script>
+
+    <!-- ============ ION ICON ============== -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

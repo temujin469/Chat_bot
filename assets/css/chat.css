@@ -1,0 +1,141 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+    place-content:center;
+}
+.chat-container{
+overflow: hidden;
+width:400px;
+height:100vh;
+position:relative;
+}
+.icon{
+    font-size: 40px;
+    font-family: 'Lobster', cursive;
+}
+/* div.expander{
+    width: 350px;
+    height:100%;
+    border-radius: 10px;
+} */
+h3{
+    margin: 0;
+}
+header{
+    display: flex;
+    padding:10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(35, 149, 255);
+    /* border-top-right-radius: 10px; */
+    /* border-top-left-radius: 10px; */
+    color: white;
+    width:100%;
+    transition: ease-in-out 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+main{
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.chat-box{
+    position: relative;
+    padding: 20px;
+    background-color:rgb(216, 216, 216);
+    overflow-y: scroll;
+    height:100%;
+}
+.chat-box::-webkit-scrollbar{
+    display: none;
+}
+.input-block{
+    width: 100%;
+    display: inline-flex;
+    border-top: 1px solid gray;
+    height: 100%;
+}
+input{
+    width:80%;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 0 20px;
+    border: 1px solid grey;
+    border-top:none ;
+    border-right: none;
+    font-size: 20px;
+    height: 100%;
+}
+button{
+    width:20%;
+    height:40px;
+    border:none;
+    background-color: rgb(35, 149, 255);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    height: 100%;
+}
+button:hover{
+    background-color: rgb(0, 131, 163);
+}
+span{
+    display: block;
+    transition: ease-in-out 0.5s;
+}
+p{
+    color: white;
+    display: inline-block;
+    padding: 10px 15px;
+}
+.bot{
+    display: flex;
+    justify-content:start;
+}
+.user{
+    display: flex;
+    justify-content: end;
+
+}
+.bot p{
+    border-radius: 10px;
+    border-bottom-left-radius:0;
+    background-color:gray;
+}
+.user p{
+    border-radius: 10px;
+    border-bottom-right-radius:0;
+    background-color: rgb(35, 149, 255);
+}
+.chat-time{
+    text-align: center;
+}
+
+.active{
+    cursor: -webkit-grabbing;
+}
+@media (max-width:800px){
+  .chat-container{
+      width:100vw;
+  }
+}
+a{
+    color:sandybrown;
+    text-decoration: none;
+}
